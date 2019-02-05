@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "248148929441",
+    "firebase_url": "https://mmm-istic.firebaseio.com",
+    "project_id": "mmm-istic",
+    "storage_bucket": "mmm-istic.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:248148929441:android:49fde49d7ad1ae25",
+        "android_client_info": {
+          "package_name": "palla_boitard_mubanzo.readroid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "248148929441-iv9c597nl1loe2g34rdmekmoq0c13naa.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "palla_boitard_mubanzo.readroid",
+            "certificate_hash": "34eb3574cc4fc4cfe701c0803e250fd444502548"
+          }
+        },
+        {
+          "client_id": "248148929441-lc1u0b86092r21kl5itm5e3pkv4rvptr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDHg6pwx2S0ONj05cinRJEGZDFdPWG0DY8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "248148929441-lc1u0b86092r21kl5itm5e3pkv4rvptr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

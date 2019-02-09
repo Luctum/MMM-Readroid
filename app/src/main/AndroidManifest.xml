@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="palla_boitard_mubanzo.readroid">
+          xmlns:tools="http://schemas.android.com/tools" package="palla_boitard_mubanzo.readroid">
 
     <application
             android:allowBackup="true"
@@ -9,11 +9,10 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
-            android:name="FireBaseContext">
+            android:name="FireBaseContext" tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
-
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
@@ -27,6 +26,9 @@
                     android:value="palla_boitard_mubanzo.readroid.LoginActivity"/>
         </activity>
         <activity android:name=".ProfileInfoActivity">
+        </activity>
+        <activity android:name=".PostActivity">
+
         </activity>
     </application>
 

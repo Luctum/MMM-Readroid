@@ -81,7 +81,6 @@ class LoginActivity : AppCompatActivity() {
             }
 
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                val user = dataSnapshot.getValue(User::class.java)
                 if(dataSnapshot.hasChild(auth.currentUser!!.uid)){
                     startActivity(intentFront)
                 } else {

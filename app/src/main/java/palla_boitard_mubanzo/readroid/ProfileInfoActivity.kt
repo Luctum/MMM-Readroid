@@ -43,5 +43,6 @@ class ProfileInfoActivity : AppCompatActivity() {
         //Redirect to the front page
         val intent = Intent(this, FrontPageActivity::class.java)
         startActivity(intent)
+        finish()
     }
 }

@@ -3,6 +3,7 @@ package palla_boitard_mubanzo.readroid.adapter
 import android.content.Context
 import android.support.v7.widget.CardView
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +11,9 @@ import android.widget.TextView
 import palla_boitard_mubanzo.readroid.R
 import palla_boitard_mubanzo.readroid.models.Comment
 
-class CommentsViewAdapter(private val comments: MutableList<Comment>, val context : Context):RecyclerView.Adapter<CommentsViewAdapter.ViewHolder>() {
+class CommentsViewAdapter(private val context : Context, private val comments: MutableList<Comment>):RecyclerView.Adapter<CommentsViewAdapter.ViewHolder>() {
+    private var tag: String = "CommentsViewHolder"
+
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): ViewHolder {
         return ViewHolder(LayoutInflater.from(context).inflate(R.layout.comments_scrollview, p0, false))
     }
@@ -20,6 +23,7 @@ class CommentsViewAdapter(private val comments: MutableList<Comment>, val contex
     }
 
     override fun onBindViewHolder(p0: ViewHolder, p1: Int) {
+        Log.d(tag, "OnBindViewHolder started")
         p0.commentAuthor.text = comments[p1].author?.username
         p0.commentItem.text = comments[p1].content
         p0.commentTimestamp.text = comments[p1].timestamp

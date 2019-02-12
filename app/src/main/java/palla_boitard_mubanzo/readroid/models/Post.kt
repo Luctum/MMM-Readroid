@@ -5,7 +5,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.IgnoreExtraProperties
 
 @IgnoreExtraProperties
-data class Post (val user : User?, val comments: MutableList<Comment>?)
+data class Post (val user : User?, val content : String?, val timestamp:String?, val comments: MutableList<Comment>?)
 
 class FireBasePostHandler: FireBaseHandler<Post> {
     override fun getReference(ref: String): DatabaseReference {

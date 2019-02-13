@@ -5,26 +5,24 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import palla_boitard_mubanzo.readroid.models.FireBaseUserHandler
 import palla_boitard_mubanzo.readroid.models.User
 
 class ProfileInfoActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
-    private lateinit var database: DatabaseReference
+    private lateinit var fireBaseHandler: FireBaseUserHandler
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile_info)
         this.auth = FirebaseAuth.getInstance()
-        this.database = FirebaseDatabase.getInstance().reference
+        this.fireBaseHandler = FireBaseUserHandler()
         val username = findViewById<EditText>(R.id.username)
         val saveButton = findViewById<Button>(R.id.saveButton)
 
-        saveButton.setOnClickListener{
+        saveButton.setOnClickListener {
             if(!username.text.toString().isEmpty()){
                 registerUsername(username)
             } else {
@@ -34,12 +32,17 @@ class ProfileInfoActivity : AppCompatActivity() {
 
     }
 
-    fun registerUsername(username : EditText){
+    private fun registerUsername(username : EditText){
         //Create an user in database
         println(username.text.toString())
-        database.child("users").child(auth.currentUser!!.uid).setValue(User(username.text.toString(), auth.currentUser!!.email))
+        val name = username.text.toString()
+        val mail = auth.currentUser!!.email
+        val uuid = auth.currentUser!!.uid
+        val user = User(name,mail)
+        this.fireBaseHandler.create("users", uuid, user)
         //Redirect to the front page
         val intent = Intent(this, FrontPageActivity::class.java)
         startActivity(intent)
+        finish()
     }
 }

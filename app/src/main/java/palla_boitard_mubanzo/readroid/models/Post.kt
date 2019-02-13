@@ -5,26 +5,18 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.IgnoreExtraProperties
 
 @IgnoreExtraProperties
-data class User(
-    var username: String? = "",
-    var email: String? = "",
-    var post: MutableList<Post>? = arrayListOf(),
-    val favorites: MutableList<Post>? = arrayListOf()
-)
+data class Post (val author : User? = null, val content : String? = "", val title: String? ="", val timestamp:String?="", val comments: MutableList<Comment>? = arrayListOf())
 
-class FireBaseUserHandler : FireBaseHandler<User> {
-
+class FireBasePostHandler: FireBaseHandler<Post> {
     override fun getReference(ref: String): DatabaseReference {
         return FirebaseDatabase.getInstance().reference.child(ref)
     }
 
     override fun getChild(ref: String, child: String): DatabaseReference {
-        return getReference(ref).child(child)
+        return this.getReference(ref).child(child)
     }
 
-    override fun create(ref:String, child: String?, obj: User) {
-        val databaseReference = this.getChild(ref, child.toString())
-        databaseReference.setValue(obj)
+    override fun create(ref: String, child: String?, obj: Post) {
+        this.getChild(ref, child.toString()).setValue(obj)
     }
-
 }

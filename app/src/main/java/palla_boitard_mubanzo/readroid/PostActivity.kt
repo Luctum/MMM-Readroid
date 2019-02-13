@@ -8,8 +8,7 @@ import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.widget.Button
 import android.widget.TextView
-import kotlinx.android.synthetic.main.comments_scrollview.*
-import palla_boitard_mubanzo.readroid.adapter.CommentsViewAdapter
+import palla_boitard_mubanzo.readroid.adapters.CommentsViewAdapter
 import palla_boitard_mubanzo.readroid.models.Comment
 import palla_boitard_mubanzo.readroid.models.FireBasePostHandler
 import palla_boitard_mubanzo.readroid.models.User
@@ -21,6 +20,13 @@ class PostActivity : AppCompatActivity() {
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        val postId = this.intent.getIntExtra("postId", -1)
+        if(postId == -1){
+
+        }else{
+            println(postId)
+        }
         super.onCreate(savedInstanceState)
         Log.d(tag, "OnCreate started")
         setContentView(R.layout.post_layout)

@@ -5,7 +5,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.IgnoreExtraProperties
 
 @IgnoreExtraProperties
-data class Comment (val content : String?, val author: User?, val timestamp: String?)
+data class Comment (val content : String? = "", val author: User? = null, val timestamp: String? = "")
 
 class FireBaseCommentHandler: FireBaseHandler<Comment> {
     override fun getReference(ref: String): DatabaseReference {

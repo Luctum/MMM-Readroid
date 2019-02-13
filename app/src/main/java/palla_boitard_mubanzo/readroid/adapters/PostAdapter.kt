@@ -1,7 +1,6 @@
-package palla_boitard_mubanzo.readroid.adapter
+package palla_boitard_mubanzo.readroid.adapters
 
 import android.content.Context
-import android.support.v7.widget.CardView
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,10 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import palla_boitard_mubanzo.readroid.R
-import palla_boitard_mubanzo.readroid.models.Comment
 import palla_boitard_mubanzo.readroid.models.Post
 
-class PostAdapter(private val context : Context, private val posts: MutableList<Post>):RecyclerView.Adapter<PostAdapter.ViewHolder>() {
+class PostAdapter(private val context : Context, private var posts: MutableList<Post>):RecyclerView.Adapter<PostAdapter.ViewHolder>() {
     private var tag: String = "PostsHolder"
 
 
@@ -38,5 +36,11 @@ class PostAdapter(private val context : Context, private val posts: MutableList<
         val postAuthor :  TextView = itemView.findViewById(R.id.postAuthor)
         val postTimestamp : TextView = itemView.findViewById(R.id.postTimestamp)
         val postTitle : TextView = itemView.findViewById(R.id.postTitle)
+    }
+
+    fun setPosts(posts: MutableList<Post>){
+        this.posts.clear()
+        this.posts.addAll(posts)
+        this.notifyDataSetChanged();
     }
 }

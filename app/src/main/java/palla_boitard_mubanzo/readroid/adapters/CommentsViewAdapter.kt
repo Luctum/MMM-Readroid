@@ -1,4 +1,4 @@
-package palla_boitard_mubanzo.readroid.adapter
+package palla_boitard_mubanzo.readroid.adapters
 
 import android.content.Context
 import android.support.v7.widget.CardView

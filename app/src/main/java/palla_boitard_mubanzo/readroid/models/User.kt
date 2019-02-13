@@ -8,8 +8,8 @@ import com.google.firebase.database.IgnoreExtraProperties
 data class User(
     var username: String? = "",
     var email: String? = "",
-    var post: MutableList<Post>? = null,
-    val favorites: MutableList<Post>? = null
+    var post: MutableList<Post>? = arrayListOf(),
+    val favorites: MutableList<Post>? = arrayListOf()
 )
 
 class FireBaseUserHandler : FireBaseHandler<User> {

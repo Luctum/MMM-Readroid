@@ -21,8 +21,16 @@ import palla_boitard_mubanzo.readroid.models.User
 class PostActivity : AppCompatActivity() {
 
     private lateinit var fireBaseHandler: FireBasePostHandler
+<<<<<<< Updated upstream
     private var dialog : Dialog? = null
     private val commentsContent: MutableList<Comment> = mutableListOf()
+=======
+    private var tag: String = "PostActivity"
+    private lateinit var auth: FirebaseAuth
+    private lateinit var database: DatabaseReference
+    private lateinit var profileReference: DatabaseReference
+    private lateinit var postsReference: DatabaseReference
+>>>>>>> Stashed changes
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,7 +41,15 @@ class PostActivity : AppCompatActivity() {
         val postTitle = findViewById<TextView>(R.id.postTitle)
         val commentbtn = findViewById<Button>(R.id.commentbtn)
         val author = findViewById<TextView>(R.id.author)
+<<<<<<< Updated upstream
         dialog = Dialog(this)
+=======
+
+        this.auth = FirebaseAuth.getInstance()
+        this.database = FirebaseDatabase.getInstance().reference
+        postsReference = database.child("posts")
+
+>>>>>>> Stashed changes
         content.text = "Lord Have mercy, I get that ich for sally. That me makes me caught up in the middle. Bobby Womack"
         author.text = "Bobby Womack"
         postTitle.text = "Caught Up In The Middle"

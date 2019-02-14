@@ -7,7 +7,6 @@ import android.widget.Button
 import android.widget.EditText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-import palla_boitard_mubanzo.readroid.models.User
 
 class LoginActivity : AppCompatActivity() {
 

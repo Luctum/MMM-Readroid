@@ -1,30 +1,19 @@
 package palla_boitard_mubanzo.readroid
 
-import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log
 import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
 
 import kotlinx.android.synthetic.main.front_page.*
 import palla_boitard_mubanzo.readroid.models.Comment
 import palla_boitard_mubanzo.readroid.models.Post
 import com.google.firebase.database.DataSnapshot
-import android.content.DialogInterface
-import android.support.design.widget.FloatingActionButton
 import android.support.v7.app.AlertDialog
 import android.widget.EditText
-import palla_boitard_mubanzo.readroid.models.FireBasePostHandler
 import palla_boitard_mubanzo.readroid.models.User
 import java.text.SimpleDateFormat
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 import java.util.*
 
 

@@ -23,6 +23,7 @@ class PostAdapter(private val context : Context, private var posts: MutableList<
         p0.postTitle.text = posts[p1].title
         p0.imgStar.setOnLongClickListener{
             p0.imgStar.setImageResource(R.drawable.star_enable)
+
             return@setOnLongClickListener true
         }
         Log.d(tag, "OnBindViewHolder started")

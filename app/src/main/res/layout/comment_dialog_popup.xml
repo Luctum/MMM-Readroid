@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                             xmlns:app="http://schemas.android.com/apk/res-auto"
+                                             xmlns:tools="http://schemas.android.com/tools"
+                                             android:layout_width="match_parent"
+                                             android:layout_height="wrap_content" android:id="@+id/Edi">
+    <android.support.v7.widget.CardView
+            android:layout_height="341dp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+            app:cardBackgroundColor="#FBFBFB" android:layout_width="381dp"
+    >
+        <android.support.constraint.ConstraintLayout
+                android:layout_height="match_parent" android:layout_width="match_parent">
+
+            <Button
+                    android:text="cancel "
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/cancelBtn"
+                    app:layout_constraintEnd_toStartOf="@+id/doCommentBtn" android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp" app:layout_constraintBottom_toBottomOf="parent"
+                    android:background="#F95738" android:textColor="#E5EBEA"/>
+            <Button
+                    android:text="share"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/doCommentBtn"
+                    android:layout_marginBottom="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent" android:layout_marginEnd="8dp"
+                    app:layout_constraintEnd_toEndOf="@+id/inputComment" android:background="#17BEBB"
+                    android:textColor="#FFFFFF"/>
+            <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="textMultiLine"
+                    android:background="@android:color/transparent"
+                    android:ems="10"
+                    android:gravity="top"
+                    android:id="@+id/inputComment" android:fontFamily="@font/open_sans" android:typeface="serif"
+                    app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
+                    app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp" app:layout_constraintBottom_toBottomOf="parent"
+                    android:text="Test"
+                    android:textStyle="bold" android:textAlignment="viewStart" android:paddingLeft="10dp"
+                    android:paddingTop="10dp" android:paddingRight="10dp"/>
+        </android.support.constraint.ConstraintLayout>
+    </android.support.v7.widget.CardView>
+</android.support.constraint.ConstraintLayout>

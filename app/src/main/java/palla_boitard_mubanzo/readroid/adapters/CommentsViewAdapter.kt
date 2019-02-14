@@ -1,7 +1,6 @@
 package palla_boitard_mubanzo.readroid.adapters
 
 import android.content.Context
-import android.support.v7.widget.CardView
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
@@ -33,6 +32,5 @@ class CommentsViewAdapter(private val context : Context, private val comments: M
         val commentItem: TextView = itemView.findViewById(R.id.commentContent)
         val commentAuthor :  TextView = itemView.findViewById(R.id.commentAuthor)
         val commentTimestamp : TextView = itemView.findViewById(R.id.commentTimestamp)
-        val commentViewType : CardView = itemView.findViewById(R.id.cardComment)
     }
 }

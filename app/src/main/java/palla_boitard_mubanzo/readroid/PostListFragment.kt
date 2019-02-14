@@ -22,7 +22,7 @@ class PostListFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val v = inflater.inflate(R.layout.fragment_post_list, container, false)
         // Inflate the layout for this fragment
-        initRecyclerView(v, posts)
+        initRecyclerView(v)
         return v
     }
 
@@ -30,22 +30,22 @@ class PostListFragment : Fragment() {
         this.posts = posts
         val postAdapter = this.recyclerView.adapter as PostAdapter
         postAdapter.setPosts(posts)
+        recyclerView.addOnItemTouchListener(
+            RecyclerPostClickListener(this.posts,this.context!!, object : RecyclerPostClickListener.OnItemClickListener {
+                override fun onItemClick(view: View, position: Int) {
+                    val intent = Intent(view.context, PostActivity::class.java)
+                    intent.putExtra("postId", posts[position].id)
+                    startActivity(intent)
+                }
+            })
+        )
     }
 
-    fun initRecyclerView(v: View, posts: MutableList<Post>) {
+    fun initRecyclerView(v: View) {
         this.recyclerView = v.findViewById(R.id.postsList)
         val postsAdapter = PostAdapter(v.context, mutableListOf())
         recyclerView.adapter = postsAdapter
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(v.context)
-        recyclerView.addOnItemTouchListener(
-            RecyclerPostClickListener(this.posts,this.context!!, object : RecyclerPostClickListener.OnItemClickListener {
-                override fun onItemClick(view: View, position: Int) {
-                    val intent = Intent(view.context, PostActivity::class.java)
-                    intent.putExtra("postId", position)
-                    startActivity(intent)
-                }
-            })
-        )
     }
 }

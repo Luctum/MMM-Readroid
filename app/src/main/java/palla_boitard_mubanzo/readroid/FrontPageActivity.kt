@@ -22,6 +22,10 @@ import android.support.v7.app.AlertDialog
 import android.widget.EditText
 import palla_boitard_mubanzo.readroid.models.FireBasePostHandler
 import palla_boitard_mubanzo.readroid.models.User
+import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.util.*
 
 
 class FrontPageActivity : AppCompatActivity() {
@@ -60,7 +64,13 @@ class FrontPageActivity : AppCompatActivity() {
                 val alert = dialog as AlertDialog
                 val title = alert.findViewById<EditText>(R.id.titleForm)
                 val content = alert.findViewById<EditText>(R.id.contentForm)
-                this.database.child("posts").push().setValue(Post(this.user,content!!.text.toString(),title!!.text.toString(),"10/10/2010"))
+                val sdf = SimpleDateFormat("dd/mm/yyyy")
+                val currentDate = sdf.format(Date())
+                val post = Post(this.user,content!!.text.toString(),title!!.text.toString(), currentDate.toString())
+                var pushed = this.database.child("posts").push()
+                pushed.setValue(post)
+                this.user.posts!!.add(pushed.key!!)
+                this.database.child("users").child(auth.currentUser!!.uid).setValue(user)
             }
             .setNegativeButton("Cancel", null)
             .create()

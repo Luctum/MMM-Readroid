@@ -90,7 +90,7 @@ class FrontPageActivity : AppCompatActivity() {
                 post!!.id = dataSnapshot.key!!
                 println(post.id)
                 for (child in dataSnapshot.child("comments").children) {
-                    post!!.comments!!.add(child.getValue(Comment::class.java)!!)
+                    post!!.comments!!.put(child.key!!, child.getValue(Comment::class.java)!!)
                 }
                 posts.add(post!!)
                 fragment.setPostsObject(posts)
@@ -119,6 +119,13 @@ class FrontPageActivity : AppCompatActivity() {
         val addPost: Button = findViewById<Button>(R.id.addPostButton)
         addPost.setOnClickListener{
             dialog.show()
+        }
+
+        val profilePage : Button = findViewById<Button>(R.id.profileButton)
+        profilePage.setOnClickListener{
+            val intent = Intent(this, ProfileActivity::class.java)
+            intent.putExtra("profileName", this.user.username)
+            startActivity(intent)
         }
 
     }

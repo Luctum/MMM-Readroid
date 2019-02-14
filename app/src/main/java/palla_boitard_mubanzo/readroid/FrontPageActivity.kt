@@ -16,7 +16,12 @@ import kotlinx.android.synthetic.main.front_page.*
 import palla_boitard_mubanzo.readroid.models.Comment
 import palla_boitard_mubanzo.readroid.models.Post
 import com.google.firebase.database.DataSnapshot
-
+import android.content.DialogInterface
+import android.support.design.widget.FloatingActionButton
+import android.support.v7.app.AlertDialog
+import android.widget.EditText
+import palla_boitard_mubanzo.readroid.models.FireBasePostHandler
+import palla_boitard_mubanzo.readroid.models.User
 
 
 class FrontPageActivity : AppCompatActivity() {
@@ -25,7 +30,7 @@ class FrontPageActivity : AppCompatActivity() {
     private lateinit var database: DatabaseReference
     private lateinit var profileReference: DatabaseReference
     private lateinit var postsReference: DatabaseReference
-
+    private lateinit var user: User
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,6 +38,32 @@ class FrontPageActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         this.auth = FirebaseAuth.getInstance()
         this.database = FirebaseDatabase.getInstance().reference
+
+        //Get the current User
+        val profileReference: DatabaseReference = database.child("users").child(auth.currentUser!!.uid)
+        val profileListener = object : ValueEventListener {
+            override fun onCancelled(p0: DatabaseError) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+               user = dataSnapshot.getValue(User::class.java)!!
+            }
+        }
+        profileReference.addListenerForSingleValueEvent(profileListener)
+
+
+        val dialog = AlertDialog.Builder(this)
+            .setTitle("Ajouter un nouveau Post")
+            .setView(R.layout.post_add)
+            .setPositiveButton("Add") { dialog, id ->
+                val alert = dialog as AlertDialog
+                val title = alert.findViewById<EditText>(R.id.titleForm)
+                val content = alert.findViewById<EditText>(R.id.contentForm)
+                this.database.child("posts").push().setValue(Post(this.user,content!!.text.toString(),title!!.text.toString(),"10/10/2010"))
+            }
+            .setNegativeButton("Cancel", null)
+            .create()
 
         //Get the current user
         postsReference = database.child("posts")
@@ -60,9 +91,7 @@ class FrontPageActivity : AppCompatActivity() {
             }
 
             override fun onChildRemoved(dataSnapshot: DataSnapshot) {
-                val postKey = dataSnapshot.key
-                posts.removeAt(postKey as Int)
-                fragment.setPostsObject(posts)
+                //val postKey = dataSnapshot.key
             }
 
             override fun onChildMoved(dataSnapshot: DataSnapshot, previousChildName: String?) {
@@ -71,6 +100,13 @@ class FrontPageActivity : AppCompatActivity() {
                 fragment.setPostsObject(posts)
             }
         }
+        postsReference.addChildEventListener(postListener)
+
+        val addPost: Button = findViewById<Button>(R.id.addPostButton)
+        addPost.setOnClickListener{
+            dialog.show()
+        }
+
     }
 
 }

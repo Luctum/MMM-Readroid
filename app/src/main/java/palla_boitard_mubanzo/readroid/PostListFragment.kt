@@ -8,7 +8,6 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import palla_boitard_mubanzo.readroid.adapters.PostAdapter
 import palla_boitard_mubanzo.readroid.models.Post
 import palla_boitard_mubanzo.readroid.listeners.RecyclerPostClickListener

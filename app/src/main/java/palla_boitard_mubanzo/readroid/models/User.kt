@@ -8,7 +8,7 @@ import com.google.firebase.database.IgnoreExtraProperties
 data class User(
     var username: String? = "",
     var email: String? = "",
-    var post: MutableList<Post>? = arrayListOf(),
+    var posts: MutableList<Post>? = arrayListOf(),
     val favorites: MutableList<Post>? = arrayListOf()
 )
 

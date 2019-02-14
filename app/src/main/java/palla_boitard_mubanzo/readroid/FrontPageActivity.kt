@@ -40,7 +40,7 @@ class FrontPageActivity : AppCompatActivity() {
         this.database = FirebaseDatabase.getInstance().reference
 
         //Get the current User
-        val profileReference: DatabaseReference = database.child("users").child(auth.currentUser!!.uid)
+        profileReference = database.child("users").child(auth.currentUser!!.uid)
         val profileListener = object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
                 TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
@@ -77,6 +77,8 @@ class FrontPageActivity : AppCompatActivity() {
 
             override fun onChildAdded(dataSnapshot: DataSnapshot, previousChildName: String?) {
                 val post = dataSnapshot.getValue(Post::class.java)
+                post!!.id = dataSnapshot.key!!
+                println(post.id)
                 for (child in dataSnapshot.child("comments").children) {
                     post!!.comments!!.add(child.getValue(Comment::class.java)!!)
                 }
@@ -86,6 +88,7 @@ class FrontPageActivity : AppCompatActivity() {
 
             override fun onChildChanged(dataSnapshot: DataSnapshot, previousChildName: String?) {
                 val post = dataSnapshot.getValue(Post::class.java)
+                post!!.id = dataSnapshot.key!!
                 posts.add(post!!)
                 fragment.setPostsObject(posts)
             }
@@ -96,6 +99,7 @@ class FrontPageActivity : AppCompatActivity() {
 
             override fun onChildMoved(dataSnapshot: DataSnapshot, previousChildName: String?) {
                 val post = dataSnapshot.getValue(Post::class.java)
+                post!!.id = dataSnapshot.key!!
                 posts.add(post!!)
                 fragment.setPostsObject(posts)
             }

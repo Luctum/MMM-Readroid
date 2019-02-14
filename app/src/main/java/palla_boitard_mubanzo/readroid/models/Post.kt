@@ -5,7 +5,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.IgnoreExtraProperties
 
 @IgnoreExtraProperties
-data class Post (val author : User? = null, val content : String? = "", val title: String? ="", val timestamp:String?="", val comments: MutableList<Comment>? = arrayListOf(), var id: Int=0)
+data class Post (val author : User? = null, val content : String? = "", val title: String? ="", val timestamp:String?="", val comments: MutableList<Comment>? = arrayListOf(), var id: String="")
 
 
 class FireBasePostHandler: FireBaseHandler<Post> {

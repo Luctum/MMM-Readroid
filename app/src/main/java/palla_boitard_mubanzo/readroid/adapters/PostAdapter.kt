@@ -41,6 +41,6 @@ class PostAdapter(private val context : Context, private var posts: MutableList<
     fun setPosts(posts: MutableList<Post>){
         this.posts.clear()
         this.posts.addAll(posts)
-        this.notifyDataSetChanged();
+        this.notifyDataSetChanged()
     }
 }

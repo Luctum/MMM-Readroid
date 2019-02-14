@@ -98,7 +98,6 @@ class PostActivity : AppCompatActivity() {
                 postTitle?.text = postSnapshot?.title
                 commentsContent = postSnapshot?.comments!!
                 initRecyclerView(commentsContent)
-                Log.d("onDataChange", postSnapshot?.comments!!.toString())
             }
         }
         reference.addValueEventListener(commentListener)

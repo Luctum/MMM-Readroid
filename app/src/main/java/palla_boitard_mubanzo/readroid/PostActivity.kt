@@ -17,6 +17,7 @@ import android.widget.TextView
 import com.google.firebase.database.*
 import palla_boitard_mubanzo.readroid.adapters.CommentsViewAdapter
 import palla_boitard_mubanzo.readroid.models.*
+import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
@@ -60,8 +61,6 @@ class PostActivity : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
     }
 
-    @TargetApi(Build.VERSION_CODES.O)
-    @RequiresApi(Build.VERSION_CODES.O)
     private fun showpopup(view: View, postId: String) {
         dialog?.setContentView(R.layout.comment_dialog_popup)
         val editText: EditText? = dialog?.findViewById(R.id.inputComment)
@@ -72,10 +71,9 @@ class PostActivity : AppCompatActivity() {
             dialog?.dismiss()
         }
         doCommentBtn?.setOnClickListener {
-            val current = LocalDateTime.now()
-            val formatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM)
-            val timestamp = current.format(formatter)
-            val newComment = Comment(editText?.text.toString(),User("hugo"),timestamp)
+            val sdf = SimpleDateFormat("dd/mm/yyyy")
+            val currentDate = sdf.format(Date())
+            val newComment = Comment(editText?.text.toString(),User("Muda"),currentDate.toString())
             commentsContent[UUID.randomUUID().toString()] = newComment
             this.fireBasePost.create("posts", postId, this.postSnapshot!!)
             dialog?.dismiss()

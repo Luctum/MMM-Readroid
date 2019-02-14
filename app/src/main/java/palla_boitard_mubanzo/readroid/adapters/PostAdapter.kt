@@ -21,8 +21,9 @@ class PostAdapter(private val context : Context, private var posts: MutableList<
         p0.postContent.text = posts[p1].content
         p0.postTimestamp.text = posts[p1].timestamp
         p0.postTitle.text = posts[p1].title
-        p0.imgStar.setOnClickListener{
-            print("coucou")
+        p0.imgStar.setOnLongClickListener{
+            p0.imgStar.setImageResource(R.drawable.star_enable)
+            return@setOnLongClickListener true
         }
         Log.d(tag, "OnBindViewHolder started")
     }

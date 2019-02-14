@@ -10,6 +10,9 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import palla_boitard_mubanzo.readroid.adapters.CommentsViewAdapter
 import palla_boitard_mubanzo.readroid.models.Comment
 import palla_boitard_mubanzo.readroid.models.FireBasePostHandler

@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import palla_boitard_mubanzo.readroid.R
 import palla_boitard_mubanzo.readroid.models.Post
@@ -20,6 +21,9 @@ class PostAdapter(private val context : Context, private var posts: MutableList<
         p0.postContent.text = posts[p1].content
         p0.postTimestamp.text = posts[p1].timestamp
         p0.postTitle.text = posts[p1].title
+        p0.imgStar.setOnClickListener{
+            print("coucou")
+        }
         Log.d(tag, "OnBindViewHolder started")
     }
 
@@ -36,6 +40,7 @@ class PostAdapter(private val context : Context, private var posts: MutableList<
         val postAuthor :  TextView = itemView.findViewById(R.id.postAuthor)
         val postTimestamp : TextView = itemView.findViewById(R.id.postTimestamp)
         val postTitle : TextView = itemView.findViewById(R.id.postTitle)
+        var imgStar : ImageView = itemView.findViewById(R.id.star)
     }
 
     fun setPosts(posts: MutableList<Post>){

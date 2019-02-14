@@ -22,7 +22,6 @@ class CommentsViewAdapter(private val context : Context, private val comments: H
     }
 
     override fun onBindViewHolder(p0: ViewHolder, p1: Int) {
-        Log.d(tag, "OnBindViewHolder started")
         val key = comments.keys.elementAt(p1)
         p0.commentAuthor.text = comments[key]?.author?.username
         p0.commentItem.text = comments[key]?.content

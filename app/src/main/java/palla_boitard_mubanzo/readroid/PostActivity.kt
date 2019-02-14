@@ -1,8 +1,11 @@
 package palla_boitard_mubanzo.readroid
 
 import android.annotation.SuppressLint
+import android.annotation.TargetApi
 import android.app.Dialog
+import android.os.Build
 import android.os.Bundle
+import android.support.annotation.RequiresApi
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -14,6 +17,9 @@ import android.widget.TextView
 import com.google.firebase.database.*
 import palla_boitard_mubanzo.readroid.adapters.CommentsViewAdapter
 import palla_boitard_mubanzo.readroid.models.*
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.time.format.FormatStyle
 import java.util.*
 
 class PostActivity : AppCompatActivity() {
@@ -22,13 +28,14 @@ class PostActivity : AppCompatActivity() {
     private var dialog: Dialog? = null
     private var fireBasePost: FireBasePostHandler = FireBasePostHandler()
     private var commentsContent: HashMap<String, Comment> = HashMap()
-    private var fireBaseComment: FireBaseCommentHandler = FireBaseCommentHandler()
     private var postSnapshot: Post? = null
     private var content: TextView? = null
     private var postTitle: TextView? = null
     private var author: TextView? = null
 
 
+    @TargetApi(Build.VERSION_CODES.O)
+    @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,13 +54,14 @@ class PostActivity : AppCompatActivity() {
     }
 
     private fun initRecyclerView(comments: HashMap<String, Comment>) {
-        Log.d("init Recycler", comments.toString())
         val recyclerView: RecyclerView = findViewById(R.id.comments_list)
         val commentsAdapter = CommentsViewAdapter(this, comments)
         recyclerView.adapter = commentsAdapter
         recyclerView.layoutManager = LinearLayoutManager(this)
     }
 
+    @TargetApi(Build.VERSION_CODES.O)
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun showpopup(view: View, postId: String) {
         dialog?.setContentView(R.layout.comment_dialog_popup)
         val editText: EditText? = dialog?.findViewById(R.id.inputComment)
@@ -64,7 +72,10 @@ class PostActivity : AppCompatActivity() {
             dialog?.dismiss()
         }
         doCommentBtn?.setOnClickListener {
-            val newComment = Comment(editText?.text.toString())
+            val current = LocalDateTime.now()
+            val formatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM)
+            val timestamp = current.format(formatter)
+            val newComment = Comment(editText?.text.toString(),User("hugo"),timestamp)
             commentsContent[UUID.randomUUID().toString()] = newComment
             this.fireBasePost.create("posts", postId, this.postSnapshot!!)
             dialog?.dismiss()
@@ -82,7 +93,6 @@ class PostActivity : AppCompatActivity() {
 
             override fun onDataChange(p0: DataSnapshot) {
                 postSnapshot = p0.getValue(Post::class.java)
-                Log.d("onDataChange", postSnapshot.toString())
                 author?.text = postSnapshot?.author?.username
                 content?.text = postSnapshot?.content
                 postTitle?.text = postSnapshot?.title
